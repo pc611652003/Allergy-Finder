@@ -19,6 +19,10 @@ Product.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    product_image: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
