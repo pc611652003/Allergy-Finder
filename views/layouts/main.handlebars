@@ -10,7 +10,7 @@
 
   <body>
     <header>
-      <h1>ALLERGEN FILTER GROCERY STORE</h1>
+      <h1>GROCERY ALLERGEN FILTER</h1>
     </header>
     <nav>
       <a href="/">Home</a>
@@ -23,7 +23,28 @@
     </nav>
     <main>
       <aside>
-        <h2>FILTER BY ALLERGEN</h2>
+        <h2>FILTER BY PRODUCT & ALLERGEN</h2>
+        {{#if loggedIn}}
+
+          <form class="form search-form">
+            <div class="form-group">
+              <label for="product-search">Search Items</label>
+              <input class="form-input" type="text" id="product-search" />
+            </div>
+            <div class="form-group">
+              <label for="filter-search">Allergens</label>
+              <input class="form-input" type="text" id="filter-search" />
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+            <div class="form-group">
+              <p id="errorMessage-login"></p>
+            </div>
+          </form>
+        {{else}}
+          <p></p>
+        {{/if}}
       </aside>
       <div class="suggestions">
         {{{body}}}
