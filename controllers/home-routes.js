@@ -14,7 +14,7 @@ router.get('/', withAuth, async(req, res) => {
                     attributes: [
                         'id',
                         'name',
-                        'filename' // we can add more attributes
+                        'product_image' // we can add more attributes
                     ]
                 }
             ]
@@ -42,7 +42,7 @@ router.get('/', withAuth, async (req,res) => {
                     attributes: [
                         'id',
                         'name',
-                        'filename' // images
+                        'allergen_image' // images
                     ]
                 }
             ]
@@ -63,7 +63,7 @@ router.get('/', withAuth, async (req,res) => {
 })
 
 // Get one product
-router.get('/Product/:id', withAuth, async (req,res) => {
+router.get('/product/:id', withAuth, async (req,res) => {
     try {
         const productData = await Product.findByPk(req.params.id, {
             include : [
@@ -72,7 +72,7 @@ router.get('/Product/:id', withAuth, async (req,res) => {
                     attributes: [
                         'id',
                         'name',
-                        'filename', // get the image need to change for model
+                        'product_image', // get the image need to change for model
                     ],
                 },
             ],
