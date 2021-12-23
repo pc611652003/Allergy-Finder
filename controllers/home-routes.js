@@ -7,7 +7,7 @@ const withAuth = require('../utils/auth');
 //Get all saved product for homepage
 router.get('/', withAuth, async(req, res) => {
     try {
-        const productData = await Product.findall(req.params.id, {
+        const productData = await Product.findAll(req.params.id, {
             include: [
                 {
                     model: Product,
@@ -35,7 +35,7 @@ router.get('/', withAuth, async(req, res) => {
 //Get all saved Allergen for homepage
 router.get('/', withAuth, async (req,res) => {
     try {
-        const allergenData = await Product.findall(req.params.id, {
+        const allergenData = await Product.findAll(req.params.id, {
             include: [
                 {
                     model: Allergen,
