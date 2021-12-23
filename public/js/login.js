@@ -39,7 +39,7 @@ const signupFormHandler = async (event) => {
       if (response.ok) {
         document.location.replace('/');
       } else {
-        alertMessage.innerHTML = "Login Fail";
+        alertMessage.innerHTML = "Signup Fail";
       }
     }
   };
