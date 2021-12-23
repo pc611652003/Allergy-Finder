@@ -29,17 +29,17 @@ const signupFormHandler = async (event) => {
 
     const alertMessage = document.querySelector('#errorMessage-signup');
   
-    if (username && email && password) {
+    if (username && password) {
       const response = await fetch('/api/users', {
         method: 'POST',
-        body: JSON.stringify({ username, email, password }),
+        body: JSON.stringify({ username, password }),
         headers: { 'Content-Type': 'application/json' },
       });
   
       if (response.ok) {
         document.location.replace('/');
       } else {
-        alertMessage.innerHTML = "Login Fail";
+        alertMessage.innerHTML = "Signup Fail";
       }
     }
   };
