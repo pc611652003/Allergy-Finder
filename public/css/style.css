@@ -17,7 +17,8 @@ body {
   min-height: 100vh;
   justify-content: flex-start;
   background-image: url("../images/foodpic.jpeg");
-  background-color: var(--quatrinary);
+  background-size: cover;
+  background-color: rgb(255, 255, 255);
 }
 
 a {
@@ -69,7 +70,6 @@ nav a:hover {
 
 .suggestions {
   flex: 4;
-  background-color: rgb(255, 255, 255);
   padding: 50px;
   display: flex;
   flex-flow: row wrap;
