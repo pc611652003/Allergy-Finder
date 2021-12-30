@@ -171,3 +171,7 @@ img {
   align-content: flex-start;
   align-items: center;
 }
+
+.row {
+  z-index: 100;
+}
