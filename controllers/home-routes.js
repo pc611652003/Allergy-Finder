@@ -7,50 +7,24 @@ const withAuth = require("../utils/auth");
 //Get all saved product for homepage
 router.get("/", withAuth, async (req, res) => {
   try {
-    const productData = await Product.findAll(req.params.id, {
-      include: [
-        {
-          model: Product,
-          attributes: [
-            "id",
-            "name",
-            "product_image", // we can add more attributes
-          ],
-        },
-      ],
+    const productData = await Product.findAll({
+      where: {
+        user_id: req.session.user
+      }
     });
     const products = productData.map((product) => product.get({ plain: true }));
-    res.render("homepage", {
-      products,
-      loggedIn: req.session.loggedIn,
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
 
-//Get all saved Allergen for homepage
-router.get("/", withAuth, async (req, res) => {
-  try {
-    const allergenData = await Product.findAll(req.params.id, {
-      include: [
-        {
-          model: Allergen,
-          attributes: [
-            "id",
-            "name",
-            "allergen_image", // images
-          ],
-        },
-      ],
+    const allergenData = await Product.findAll({
+      where: {
+        user_id: req.session.user
+      }
     });
-
     const Allergens = allergenData.map((allergen) =>
       allergen.get({ plain: true })
     );
 
     res.render("homepage", {
+      products,
       Allergens,
       loggedIn: req.session.loggedIn,
     });
@@ -59,6 +33,29 @@ router.get("/", withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// //Get all saved Allergen for homepage
+// router.get("/", withAuth, async (req, res) => {
+//   try {
+//     const allergenData = await Product.findAll({
+//       where: {
+//         user_id: req.session.user
+//       }
+//     });
+
+//     const Allergens = allergenData.map((allergen) =>
+//       allergen.get({ plain: true })
+//     );
+
+//     res.render("homepage", {
+//       Allergens,
+//       loggedIn: req.session.loggedIn,
+//     });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// });
 
 // Get one product
 router.get("/product/:id", withAuth, async (req, res) => {
