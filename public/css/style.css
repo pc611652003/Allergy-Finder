@@ -71,13 +71,14 @@ nav a:hover {
 
 .suggestions {
   flex: 4;
+
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 .suggestions::before {
-  background-image: url("../images/foodpic.jpeg");
+  /* background-image: url("../images/foodpic.jpeg"); */
   background-size: cover;
   opacity: 0.12;
   position: absolute;
@@ -119,6 +120,7 @@ img {
 
 /* CARDS */
 .card {
+  overflow-x: scroll;
   margin: 20px;
   flex: 0 1 300px;
   border: 7px double var(--dark);
@@ -176,7 +178,7 @@ img {
 }
 
 .row {
-  z-index: 100;
+  /* z-index: 100; */
 }
 
 .welcome {
@@ -185,7 +187,7 @@ img {
   text-align: center;
   text-transform: uppercase;
   width: 80%;
-  height: 30%;
-  position: absolute;
+  /* height: 30%;
+  position: absolute; */
   top: 36%;
 }
