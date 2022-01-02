@@ -46,10 +46,13 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/search", (req, res) => {
+
+    // hardcode data for develop use only
+    // should be replace by result from external API
     const searches = [
       
         {
-          id: 1,
+          index: 1,
           name: 'somecat',
           product_id: 'somecode',
           product_image: 'https://64.media.tumblr.com/9e26cbe3e0867fe7af1626fcb6ad3568/tumblr_puea0achjL1wiwvfvo1_1280.jpg',
@@ -58,7 +61,7 @@ router.get("/search", (req, res) => {
         },
         
         {
-          id: 2,
+          index: 2,
           name: 'sometrash',
           product_id: 'someothercode',
           product_image: 'https://i.pinimg.com/474x/ef/49/37/ef493790714a037449d62d3f2a6fccbf--cutest-animals-funny-animals.jpg',
