@@ -12,8 +12,6 @@ router.get("/", withAuth, async (req, res) => {
         user_id: req.session.user
       }
     });
-    console.log('This is the copy');
-    console.log(productData);
     const products = productData.map((product) => product.get({ plain: true }));
 
     const allergenData = await Product.findAll({
