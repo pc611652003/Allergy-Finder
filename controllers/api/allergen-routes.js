@@ -5,7 +5,7 @@ const { Allergen } = require('../../models');
 router.post('/', async (req, res) => {
     try {
       const dbAllergenData = await Allergen.create({
-        name: req.body.name,
+        allergen_name: req.body.allergen_name,
         user_id: req.body.user_id,
       });
       res.status(200).json(dbAllergenData);
@@ -45,7 +45,7 @@ router.get('/:user_id', async (req, res) => {
 router.put('/:id', async (req, res) => {
     try {
       const dbAllergenData = await Allergen.update({
-        name: req.body.name,
+        allergen_name: req.body.allergen_name,
         user_id: req.body.user_id,
       },{
         where: {

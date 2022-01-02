@@ -49,7 +49,6 @@
 
     </nav>
     <main>
-
       <aside>
         <h2>FILTER BY: PRODUCT <br />& <br />ALLERGEN</h2>
         {{#if loggedIn}}
@@ -63,7 +62,7 @@
             </div>
             <br />
             <div class="form-group">
-              <label for="filter-search">Allergens
+              <label for="filter-search">Allergens (separate with commas)
                 <br />
                 🐟 🥛 🍞 🍤 🥚 🥜</label>
               <input class="form-input" type="text" id="filter-search" />
@@ -86,6 +85,7 @@
 
     {{#if loggedIn}}
       <script src="/js/logout.js"></script>
+      <script src="/js/productSearch.js"></script>
     {{/if}}
   </body>
 

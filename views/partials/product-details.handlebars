@@ -1,10 +1,10 @@
 <section class="card">
   <a href="/product/{{id}}">
-    <header>{{name}}</header>
+    <header>{{product.name}}</header>
 
     <div class="card-body">
-      <img src="{{product_image}}" alt="{{description}}" />
-      <p>FREE OF: {{allergen}}</p>
+      <img src="{{product.product_image}}" alt="{{description}}" />
+      <p>FREE OF: {{allergen.allergen_name}}</p>
       <div class="form-group">
         <button class="btn btn-primary" type="click">DELETE</button>
       </div>
