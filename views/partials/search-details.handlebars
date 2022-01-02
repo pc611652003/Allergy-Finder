@@ -1,12 +1,15 @@
 <section class="card">
-  <a href="/search/{{id}}">
+  <a>
     <header>{{name}}</header>
 
     <div class="card-body">
       <img src="{{product_image}}" alt="{{description}}" />
+      <p>{{description}}</p>
       <p>CONTAINS: {{allergen}}</p>
       <div class="form-group">
-        <button class="btn btn-primary" type="click">SAVE</button>
+        <button class="btn btn-primary sav-btn" 
+        type="click" id='{{index}}' data-name={{name}} 
+        data-productImage={{product_image}} data-productId={{product_id}}>SAVE</button>
       </div>
     </div>
   </a>

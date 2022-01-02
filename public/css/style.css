@@ -71,17 +71,16 @@ nav a:hover {
 
 .suggestions {
   flex: 4;
-
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
-  align-items: center;
+  align-items: center;/*
 }
-.suggestions::before {
-  /* background-image: url("../images/foodpic.jpeg"); */
+.suggestions::before {*/
+  background-image: url("../images/food.PNG");
   background-size: cover;
-  opacity: 0.12;
-  position: absolute;
+  /*opacity: 0.12;
+  position: absolute;*/
   top: 36%;
   right: 0px;
   bottom: 0px;
@@ -178,7 +177,7 @@ img {
 }
 
 .row {
-  /* z-index: 100; */
+  /*z-index: 100;*/
 }
 
 .welcome {

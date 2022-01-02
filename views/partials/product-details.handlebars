@@ -1,12 +1,12 @@
 <section class="card">
-  <a href="/product/{{id}}">
+  <a>
     <header>{{name}}</header>
 
     <div class="card-body">
       <img src="{{product_image}}" alt="{{description}}" />
       <p>FREE OF: {{allergen}}</p>
       <div class="form-group">
-        <button class="btn btn-primary" type="click">DELETE</button>
+        <button class="btn btn-primary del-btn" type="click" id='{{id}}'>DELETE</button>
       </div>
     </div>
   </a>

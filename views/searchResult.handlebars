@@ -1,0 +1,15 @@
+<section class="Search-Title">
+    <div>
+    {{!-- <header> --}}
+<h1>
+    Search Results
+</h1>
+    {{!-- </header> --}}
+   </div>
+</section>
+
+{{#each searches}}
+{{> search-details}}
+{{/each}}
+
+<script src="./js/addSearchProduct.js"></script>
