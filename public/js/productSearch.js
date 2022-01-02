@@ -1,22 +1,26 @@
 const searchHandler = async (event) => {
 	event.preventDefault();
-	const product = document.querySelector('#product-search').value.trim();
-	const allergen_name = document.querySelector('#filter-search').value.trim();
-	const allergen_array = allergen_name.split(',');
-	if (product && allergen_name) {
-		for (let i = 0; i < allergen_array; i++) {
-			var allergenInput = allergen_array[i]; 
-			console.log(allergenInput)
+	const search_product = document.querySelector('#product-search').value.trim();
+	const search_allergen = document.querySelector('#filter-search').value.trim();
+	const allergen_array = search_allergen.split(',');
+
+	//grabs each input within the array and then saves it into the db
+	if (search_product && search_allergen) {
+		for (let i = 0; i < allergen_array.length; i++) {
+			var allergen_name = allergen_array[i]; 
+			console.log(allergen_name)
 			const allergyResponse = await fetch('/api/allergens', {
 				method: 'POST',
-				body: JSON.stringify({allergenInput}),
+				body: JSON.stringify({allergen_name}),
 				headers: {'Content-Type' : 'application/json'},
 			});
 			if (allergyResponse.ok){
+				document.location.replace('/');
 			} else {
 				alert('Error')
 			}
 		}
+
 		//this only fetches name and images but you are able to filter by intolerances such as dairy, egg, gluten, peanut, sesame, seafood, shellfish, soy, sulfite, tree nut, and wheat.
 		await fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/ingredients/autocomplete?query=${product}&number=5&intolerances=${allergen_name}`, {
 			"method": "GET",
@@ -38,13 +42,14 @@ const searchHandler = async (event) => {
 						headers: {'Content-Type': 'application/json'},
 					});
 					if (response.ok){
-						//document.location.replace('/');
+						document.location.replace('/');
 					} else {
 						alert('Error')
 					}
 				}
 			})
 
-}}
+}
+}
 
 document.querySelector('.search-form').addEventListener('submit', searchHandler);
