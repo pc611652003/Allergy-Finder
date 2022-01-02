@@ -9,7 +9,7 @@ router.get("/", withAuth, async (req, res) => {
   try {
     const productData = await Product.findAll({
       where: {
-        user_id: req.session.user,
+        user_id: req.session.user
       }
     });
     const products = productData.map((product) => product.get({ plain: true }));
