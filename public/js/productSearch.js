@@ -16,13 +16,10 @@ const searchHandler = async (event) => {
 			});
 			if (allergyResponse.ok){
 				document.location.replace('/');
-			} else {
-				alert('Error')
 			}
 		}
-
 		//this only fetches name and images but you are able to filter by intolerances such as dairy, egg, gluten, peanut, sesame, seafood, shellfish, soy, sulfite, tree nut, and wheat.
-		await fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/ingredients/autocomplete?query=${product}&number=5&intolerances=${allergen_name}`, {
+		await fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/ingredients/autocomplete?query=${search_product}&number=5&intolerances=${search_allergen}`, {
 			"method": "GET",
 			"headers": {
 				"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
@@ -42,12 +39,12 @@ const searchHandler = async (event) => {
 						headers: {'Content-Type': 'application/json'},
 					});
 					if (response.ok){
-						document.location.replace('/');
-					} else {
-						alert('Error')
-					}
+					} 
 				}
 			})
+		.catch(err => {
+			console.error(err);
+		});
 
 }
 }
