@@ -6,7 +6,6 @@ router.post('/', async (req, res) => {
     try {
       const dbProductData = await Product.create({
         name: req.body.name,
-        product_id: req.body.product_id,
         product_image: req.body.product_image,
         user_id: req.session.user,
       });
@@ -48,7 +47,6 @@ router.put('/:id', async (req, res) => {
     try {
       const dbProductData = await Product.update({
         name: req.body.name,
-        product_id: req.body.product_id,
         product_image: req.body.product_image,
         user_id: req.body.user_id,
       },{
