@@ -3,13 +3,13 @@
     <header>{{name}}</header>
 
     <div class="card-body">
-      <img src="https://spoonacular.com/cdn/ingredients_100x100/{{product_image}}" alt="{{description}}" />
-      <p>{{description}}</p>
-      <p>CONTAINS: {{allergen}}</p>
+      <img src="{{product_image}}" alt="{{description}}" />
+      <!--<p>{{description}}</p>
+      <p>CONTAINS: {{allergen}}</p>-->
       <div class="form-group">
         <button class="btn btn-primary sav-btn" 
         type="click" id='{{index}}' data-name={{name}} 
-        data-productImage={{product_image}} data-productId={{product_id}}>SAVE</button>
+        data-productImage={{product_image}}>SAVE</button>
       </div>
     </div>
   </a>
