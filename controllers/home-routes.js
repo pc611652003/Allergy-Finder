@@ -35,40 +35,39 @@ router.get("/", withAuth, async (req, res) => {
 });
 
 router.get("/login", async (req, res) => {
+  var allergens = [];
   if (req.session.loggedIn) {
     const allergenData = await Allergen.findAll({
       where: {
         user_id: req.session.user
       }
     });
-    const allergens = allergenData.map((allergen) =>
+    allergens = allergenData.map((allergen) =>
       allergen.get({ plain: true })
     );
     res.redirect("/");
     return;
-  } else {
-    allergens = [];
-  }
+  } 
 
   res.render("login",{ allergens });
 });
 
 router.get("/search", async (req, res) => {
+  var searches = [];
+  var allergens = [];
+
   if (req.session.loggedIn) {
-    const searches = req.session.searchData;
+    searches = req.session.searchData;
 
     const allergenData = await Allergen.findAll({
       where: {
         user_id: req.session.user
       }
     });
-    const allergens = allergenData.map((allergen) =>
+    allergens = allergenData.map((allergen) =>
       allergen.get({ plain: true })
     );
-  } else {
-    searches = [];
-    allergens = [];
-  }
+  } 
 
   res.render("searchResult", {
     searches,
