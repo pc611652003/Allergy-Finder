@@ -15,7 +15,6 @@ const searchHandler = async (event) => {
 				headers: {'Content-Type' : 'application/json'},
 			});
 			if (allergyResponse.ok){
-				document.location.replace('/');
 			}
 		}
 		//this only fetches name and images but you are able to filter by intolerances such as dairy, egg, gluten, peanut, sesame, seafood, shellfish, soy, sulfite, tree nut, and wheat.
@@ -39,6 +38,7 @@ const searchHandler = async (event) => {
 						headers: {'Content-Type': 'application/json'},
 					});
 					if (response.ok){
+						document.location.replace('/');
 					} 
 				}
 			})
