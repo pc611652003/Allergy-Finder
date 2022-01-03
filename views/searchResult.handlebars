@@ -1,15 +1,52 @@
-<section class="Search-Title">
+<aside>
+    <h2>FILTER BY: PRODUCT <br />& <br />ALLERGEN</h2>
+    {{#if loggedIn}}
+    <form class="form search-form">
+        <div class="form-group">
+            <label for="product-search">Search Products
+            <br />
+            🛒 🥣 🍋 🥩 🛒</label>
+            <input class="form-input" type="text" id="product-search" />
+        </div>
+        <br />
+        <div class="form-group">
+            <label for="filter-search">Allergens
+            <br />
+            🐟 🥛 🍞 🍤 🥚 🥜</label>              
+            <p id="filter-message">None</p>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" id="filter-sav-btn" type="click">Save Filter</button>
+            <button class="btn btn-primary" id="search-btn" type="click">Search</button>
+        </div>
+        <div class="form-group">
+            <p id="errorMessage-search"></p>
+        </div>
+    </form>
     <div>
-    {{!-- <header> --}}
-<h1>
-    Search Results
-</h1>
-    {{!-- </header> --}}
-   </div>
-</section>
+        {{#each allergens as |allergen|}}
+        {{> allergen-details}}
+        {{/each}}
+    </div>
+    {{else}}
+    <p></p>
+    {{/if}}
+</aside>
+<div class="suggestions">
+    <section class="Search-Title">
+        <div>
+        {{!-- <header> --}}
+            <h1>
+                Search Results
+            </h1>
+        {{!-- </header> --}}
+        </div>
+    </section>
 
-{{#each searches}}
-{{> search-details}}
-{{/each}}
+    {{#each searches}}
+    {{> search-details}}
+    {{/each}}
+
+</div>
 
 <script src="./js/addSearchProduct.js"></script>
