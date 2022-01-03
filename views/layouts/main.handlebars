@@ -19,68 +19,63 @@
       {{#if loggedIn}}
         <button id="logout" class="btn-no-style">LOGOUT</button>
       {{else}}
-        <a href="/login">LOGIN</a>
+        <button id="login" class="btn-no-style">LOGIN</button>
       {{/if}}
       <p id="errorMessage-logout"></p>
-      <a href="https://twitter.com/cutedogs101">
+      {{#if loggedIn}}
+      <a class="nav-icon-active">
+        <img class="icon-button" id="Egg" alt="EGG FREE" src="./images/eggfree.png" />
+      </a>
+      <a class="nav-icon-active">
+        <img class="icon-button" id="Dairy" alt="MILK FREE" src="./images/milkfree.png" />
+      </a>
+      <a class="nav-icon-active">
+        <img class="icon-button" id="Seafood" alt="FISH FREE" src="./images/nofish.png" />
+      </a>
+      <a class="nav-icon-active">
+        <img class="icon-button" id="Shellfish" alt="SHELLFISH FREE" src="./images/noshellfish.png" />
+      </a>
+      <a class="nav-icon-active">
+        <img class="icon-button" id="Soy" alt="SOY FREE" src="./images/nosoy.png" />
+      </a>
+      <a class="nav-icon-active">
+        <img class="icon-button" id="Tree%20Nut" alt="TREE-NUT FREE " src="./images/notreenut.png" />
+      </a>
+      <a class="nav-icon-active">
+        <img class="icon-button" id="Peanut" alt="PEANUT FREE" src="./images/peanutfree.png" />
+      </a>
+      <a class="nav-icon-active">
+        <img class="icon-button" id="Wheat" alt="WHEAT FREE" src="./images/nowheat.png" />
+      </a>
+      {{else}}
+      <a class="nav-icon-inactive">
         <img alt="EGG FREE" src="./images/eggfree.png" />
       </a>
-      <a href="https://twitter.com/cutedogs101">
+      <a class="nav-icon-inactive">
         <img alt="MILK FREE" src="./images/milkfree.png" />
       </a>
-      <a href="https://twitter.com/cutedogs101">
+      <a class="nav-icon-inactive">
         <img alt="FISH FREE" src="./images/nofish.png" />
       </a>
-      <a href="https://twitter.com/cutedogs101">
+      <a class="nav-icon-inactive">
         <img alt="SHELLFISH FREE" src="./images/noshellfish.png" />
       </a>
-      <a href="https://twitter.com/cutedogs101">
+      <a class="nav-icon-inactive">
         <img alt="SOY FREE" src="./images/nosoy.png" />
       </a>
-      <a href="https://twitter.com/cutedogs101">
+      <a class="nav-icon-inactive">
         <img alt="TREE-NUT FREE " src="./images/notreenut.png" />
       </a>
-      <a href="https://twitter.com/cutedogs101">
+      <a class="nav-icon-inactive">
         <img alt="PEANUT FREE" src="./images/peanutfree.png" />
       </a>
-      <a href="https://twitter.com/cutedogs101">
+      <a class="nav-icon-inactive">
         <img alt="WHEAT FREE" src="./images/nowheat.png" />
       </a>
-
+      {{/if}}
     </nav>
     <main>
-      <aside>
-        <h2>FILTER BY: PRODUCT <br />& <br />ALLERGEN</h2>
-        {{#if loggedIn}}
-
-          <form class="form search-form">
-            <div class="form-group">
-              <label for="product-search">Search Products
-                <br />
-                🛒 🥣 🍋 🥩 🛒</label>
-              <input class="form-input" type="text" id="product-search" />
-            </div>
-            <br />
-            <div class="form-group">
-              <label for="filter-search">Allergens (separate with commas)
-                <br />
-                🐟 🥛 🍞 🍤 🥚 🥜</label>
-              <input class="form-input" type="text" id="filter-search" />
-            </div>
-            <div class="form-group">
-              <button class="btn btn-primary" type="submit">Search</button>
-            </div>
-            <div class="form-group">
-              <p id="errorMessage-search"></p>
-            </div>
-          </form>
-        {{else}}
-          <p></p>
-        {{/if}}
-      </aside>
-      <div class="suggestions">
         {{{body}}}
-      </div>
     </main>
 
     {{#if loggedIn}}

@@ -4,10 +4,16 @@ const { Product } = require('../../models');
 // Add a Data to Product Table
 router.post('/', async (req, res) => {
     try {
+      var user_id = 0;
+      if (!req.body.user_id) {
+        user_id = req.session.user;
+      } else {
+        user_id = req.body.user_id;
+      }
       const dbProductData = await Product.create({
         name: req.body.name,
         product_image: req.body.product_image,
-        user_id: req.session.user,
+        user_id: user_id,
       });
       res.status(200).json(dbProductData);
     } catch (err) {
@@ -47,7 +53,6 @@ router.put('/:id', async (req, res) => {
     try {
       const dbProductData = await Product.update({
         name: req.body.name,
-        product_id: req.body.product_id,
         product_image: req.body.product_image,
         user_id: req.body.user_id,
       },{

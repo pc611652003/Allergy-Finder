@@ -1,13 +1,14 @@
 const saveSearchItem = async (event) => {
     event.preventDefault();
     const target = event.target;
-    const name = target.getAttribute('data-name');
+    const nameAttitute = target.getAttribute('data-name');
     const product_image = target.getAttribute('data-productImage');
-    const product_id = target.getAttribute('data-productId');
     
+    const name = nameAttitute.replace(/%20/g, " ");
+
     const response = await fetch('/api/products', {
         method: 'POST',
-        body: JSON.stringify({ name, product_id, product_image }),
+        body: JSON.stringify({ name, product_image }),
         headers: { 'Content-Type': 'application/json' },
     });
 
