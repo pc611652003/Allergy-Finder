@@ -14,18 +14,18 @@ router.get("/", withAuth, async (req, res) => {
     });
     const products = productData.map((product) => product.get({ plain: true }));
 
-    const allergenData = await Product.findAll({
+    const allergenData = await Allergen.findAll({
       where: {
         user_id: req.session.user
       }
     });
-    const Allergens = allergenData.map((allergen) =>
+    const allergens = allergenData.map((allergen) =>
       allergen.get({ plain: true })
     );
 
     res.render("homepage", {
       products,
-      Allergens,
+      allergens,
       loggedIn: req.session.loggedIn,
     });
   } catch (err) {
@@ -43,6 +43,13 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
+router.get("/search", (req, res) => {
+  const searches = req.session.searchData;
 
+  res.render("searchResult", {
+    searches,
+    loggedIn: req.session.loggedIn,
+  });
+});
 
 module.exports = router;

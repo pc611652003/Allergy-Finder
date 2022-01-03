@@ -2,24 +2,13 @@ const searchHandler = async (event) => {
 	event.preventDefault();
 	const search_product = document.querySelector('#product-search').value.trim();
 	const search_allergen = document.querySelector('#filter-search').value.trim();
-	const allergen_array = search_allergen.split(',');
+	const searchProducts = [];
 
 	//grabs each input within the array and then saves it into the db
 	if (search_product && search_allergen) {
-		for (let i = 0; i < allergen_array.length; i++) {
-			var allergen_name = allergen_array[i]; 
-			console.log(allergen_name)
-			const allergyResponse = await fetch('/api/allergens', {
-				method: 'POST',
-				body: JSON.stringify({allergen_name}),
-				headers: {'Content-Type' : 'application/json'},
-			});
-			if (allergyResponse.ok){
-				document.location.replace('/');
-			}
-		}
+		
 		//this only fetches name and images but you are able to filter by intolerances such as dairy, egg, gluten, peanut, sesame, seafood, shellfish, soy, sulfite, tree nut, and wheat.
-		await fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/ingredients/autocomplete?query=${search_product}&number=5&intolerances=${search_allergen}`, {
+		fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/ingredients/autocomplete?query=${search_product}&number=5&intolerances=${search_allergen}`, {
 			"method": "GET",
 			"headers": {
 				"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
@@ -29,18 +18,29 @@ const searchHandler = async (event) => {
 		.then(response => response.json())
 		.then(async data => 
 			{
-				console.log(data)
+				console.log(data);
 				for (let i = 0; i < data.length; i++){
-					var name = data[i].name
-					var product_image = data[i].image
+					var name = data[i].name;
+					var product_image = `https://spoonacular.com/cdn/ingredients_100x100/${data[i].image}`;
+					var searchItem = {
+						index: i,
+						name: name,
+						product_image: product_image
+					};
+					searchProducts.push(searchItem);
 					const response = await fetch('/api/products',{
 						method:'POST',
 						body: JSON.stringify({name, product_image}),
 						headers: {'Content-Type': 'application/json'},
 					});
-					if (response.ok){
-					} 
 				}
+				const searchResponse = await fetch('/api/search', {
+					method: 'POST',
+					body: JSON.stringify({ searchProducts }),
+					headers: {'Content-Type': 'application/json'},
+				});
+				document.location.replace('/search');
+
 			})
 		.catch(err => {
 			console.error(err);
