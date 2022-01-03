@@ -43,6 +43,13 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
+router.get("/search", (req, res) => {
+  const searches = req.session.searchData;
 
+  res.render("searchResult", {
+    searches,
+    loggedIn: req.session.loggedIn,
+  });
+});
 
 module.exports = router;

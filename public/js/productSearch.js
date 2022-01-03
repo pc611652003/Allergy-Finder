@@ -1,4 +1,4 @@
-const searchHandler = async (req, res, event) => {
+const searchHandler = async (event) => {
 	event.preventDefault();
 	const search_product = document.querySelector('#product-search').value.trim();
 	const search_allergen = document.querySelector('#filter-search').value.trim();
@@ -8,7 +8,7 @@ const searchHandler = async (req, res, event) => {
 	if (search_product && search_allergen) {
 		
 		//this only fetches name and images but you are able to filter by intolerances such as dairy, egg, gluten, peanut, sesame, seafood, shellfish, soy, sulfite, tree nut, and wheat.
-		await fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/ingredients/autocomplete?query=${search_product}&number=5&intolerances=${search_allergen}`, {
+		fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/ingredients/autocomplete?query=${search_product}&number=5&intolerances=${search_allergen}`, {
 			"method": "GET",
 			"headers": {
 				"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
@@ -34,8 +34,13 @@ const searchHandler = async (req, res, event) => {
 						headers: {'Content-Type': 'application/json'},
 					});
 				}
-				res.session.search_results = searchProducts;
-				console.log(res.session.search_result);
+				const searchResponse = await fetch('/api/search', {
+					method: 'POST',
+					body: JSON.stringify({ searchProducts }),
+					headers: {'Content-Type': 'application/json'},
+				});
+				document.location.replace('/search');
+
 			})
 		.catch(err => {
 			console.error(err);
