@@ -4,9 +4,15 @@ const { Allergen } = require('../../models');
 // Add a Data to Allergen Table
 router.post('/', async (req, res) => {
     try {
+      var user_id = 0;
+      if (!req.body.user_id) {
+        user_id = req.session.user;
+      } else {
+        user_id = req.body.user_id;
+      }
       const dbAllergenData = await Allergen.create({
         allergen_name: req.body.allergen_name,
-        user_id: req.body.user_id,
+        user_id: user_id,
       });
       res.status(200).json(dbAllergenData);
     } catch (err) {

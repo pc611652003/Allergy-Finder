@@ -64,7 +64,7 @@ nav a {
   text-align: center;
 }
 
-nav a:hover {
+nav .nav-icon-active:hover {
   color: var(--secondary);
   background-color: var(--dark);
 }
@@ -98,6 +98,11 @@ nav a:hover {
   font-size: 100%;
   transition: color 0.1s;
   margin-left: 16px;
+}
+
+.btn-no-style:hover {
+  color: var(--secondary);
+  background-color: var(--dark);
 }
 
 img {
@@ -181,6 +186,17 @@ img {
 }
 
 .welcome {
+  color: var(--primary);
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  width: 80%;
+  /* height: 30%;
+  position: absolute; */
+  top: 36%;
+}
+
+.Search-Title {
   color: var(--primary);
   font-weight: bold;
   text-align: center;
