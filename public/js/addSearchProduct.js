@@ -1,3 +1,6 @@
+const savedAlert = document.querySelector('#saved-Alert');
+savedAlert.innerHTML = "";
+
 const saveSearchItem = async (event) => {
     event.preventDefault();
     const target = event.target;
@@ -12,6 +15,7 @@ const saveSearchItem = async (event) => {
         headers: { 'Content-Type': 'application/json' },
     });
 
+    savedAlert.innerHTML = `${name} is saved !`;
 };
 
 const savBtns = document.querySelectorAll('.sav-btn');
