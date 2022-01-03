@@ -11,7 +11,7 @@ Allergen.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    allergen_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },

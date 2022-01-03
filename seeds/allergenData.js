@@ -2,7 +2,7 @@ const { Allergen } = require('../models');
 
 const allergendata = [
   {
-    "name": "peanuts",
+    "allergen_name": "peanuts",
     "user_id": 1 
   }
 ];

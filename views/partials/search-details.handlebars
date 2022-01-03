@@ -4,9 +4,12 @@
 
     <div class="card-body">
       <img src="https://spoonacular.com/cdn/ingredients_100x100/{{product_image}}" alt="{{description}}" />
-      <p>FREE OF: {{allergen_name}}</p>
+      <p>{{description}}</p>
+      <p>CONTAINS: {{allergen}}</p>
       <div class="form-group">
-        <button class="btn btn-primary del-btn" type="click" id='{{id}}'>DELETE</button>
+        <button class="btn btn-primary sav-btn" 
+        type="click" id='{{index}}' data-name={{name}} 
+        data-productImage={{product_image}} data-productId={{product_id}}>SAVE</button>
       </div>
     </div>
   </a>
