@@ -5,78 +5,28 @@ var queryMessage = "";
 const searchHandler = async (event) => {
 	event.preventDefault();
 	const search_product = document.querySelector('#product-search').value.trim();
-	if (displayMessage == "None") {
-		queryMessage = "";
-	} else {
-		queryMessage = displayMessage.replaceAll(", ",",").replace("Tree Nut", "Tree%20Nut").toLowerCase();
-	}
-	const search_allergen = queryMessage;
-	const searchProducts = [];
-
-	//grabs each input within the array and then saves it into the db
 	if (search_product) {
-		var apiUrl = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/ingredients/autocomplete?query=${search_product}&number=5`;
-
-		if (search_allergen) {
-			apiUrl = apiUrl + `&intolerances=${search_allergen}`;
+		if (displayMessage == "None") {
+			queryMessage = "";
+		} else {
+			queryMessage = displayMessage.replaceAll(", ",",").replace("Tree Nut", "Tree%20Nut").toLowerCase();
 		}
 
-		var apiKey = "";
-		var apiKeySearch = fetch(`api/search`, {
-			method: 'GET'
-		})
-		.then(response => {
-			if(response.ok) {
-				return response.json();
-			}
-		})
-		.then(data => {
-			if(data) {
-				apiKey = data.message;
-				return apiKey;
-			}
-		})
-		.then(apiKey => {
-			//this only fetches name and images but you are able to filter by intolerances such as dairy, egg, gluten, peanut, sesame, seafood, shellfish, soy, sulfite, tree nut, and wheat.
-			fetch(apiUrl, {
-				"method": "GET",
-				"headers": {
-					"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-					"x-rapidapi-key": `${apiKey}`
-				}
-			})
-			.then(response => response.json())
-			.then(async data => 
-				{
-					for (let i = 0; i < data.length; i++){
-						var name = data[i].name;
-						var nameAttitute = name.replace(/\s/g, "%20");
-						var product_image = `https://spoonacular.com/cdn/ingredients_100x100/${data[i].image}`;
-						var searchItem = {
-							index: i,
-							name: name,
-							nameAttitute: nameAttitute,
-							product_image: product_image
-						};
-						searchProducts.push(searchItem);
-					}
-					const searchResponse = await fetch('/api/search', {
-						method: 'POST',
-						body: JSON.stringify({ searchProducts }),
-						headers: {'Content-Type': 'application/json'},
-					});
-				})
-			.then(() => {
-				document.location.replace('/search');
-			})
-			.catch(err => {
-				console.error(err);
-			});
+		const search_allergen = queryMessage;
+		
+		const response = await fetch('/search', {
+			method: 'POST',
+			body: JSON.stringify({ search_product, search_allergen }),
+			headers: { 'Content-Type': 'application/json' },
 		})
 		.catch(err => {
 			console.error(err);
 		});
-	}
+
+		if (response.ok) {
+			document.location.replace('/search');
+		}
+	}	
 }
 
 const filterHandler = (event) =>{
